@@ -50,8 +50,19 @@ const renderSnake = function(snake) {
   drawSnake(snake);
 };
 
+const eraseFood = function(food) {
+  const [colId, rowId] = food.location;
+  const cell = getCell(colId, rowId);
+  cell.classList.remove('food');
+};
+
 const drawGame = function(game) {
   const { snake, ghostSnake } = game.getState();
+  if (game.isFoodEaten()) {
+    game.generateNewFood();
+    drawFood(game.food);
+    eraseFood(game.previousFood);
+  }
   renderSnake(snake);
   renderSnake(ghostSnake);
 };

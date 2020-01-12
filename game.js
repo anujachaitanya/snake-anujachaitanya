@@ -1,9 +1,10 @@
 class Game {
-  constructor(snake, ghostSnake, foodPosition, gridSize) {
+  constructor(snake, ghostSnake, foodPosition, gridSize, previousFood) {
     this.snake = snake;
     this.ghostSnake = ghostSnake;
     this.food = foodPosition;
     this.gridSize = gridSize;
+    this.previousFood = previousFood;
   }
 
   getState() {
@@ -33,5 +34,17 @@ class Game {
     }
   }
 
-  isFoodEaten() {}
+  generateNewFood() {
+    this.previousFood = this.food;
+    const colId = Math.floor(Math.random() * this.gridSize[0]);
+    const rowId = Math.floor(Math.random() * this.gridSize[1]);
+    this.food = new Food([colId, rowId]);
+  }
+
+  isFoodEaten() {
+    const arePositionsEqual = function(cellsA, cellsB) {
+      return cellsA.every((position, index) => position == cellsB[index]);
+    };
+    return arePositionsEqual(this.food.location, this.snake.head);
+  }
 }
