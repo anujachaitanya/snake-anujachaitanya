@@ -64,9 +64,12 @@ const drawGame = function(game) {
     drawFood(game.food);
     eraseFood(game.previousFood);
   }
-
   renderSnake(snake);
   renderSnake(ghostSnake);
+};
+
+const endGame = function(playGame) {
+  clearInterval(playGame);
 };
 
 const handleKeyPress = (event, game) => {
@@ -108,11 +111,11 @@ const main = function() {
   createGrids();
   attachEventListeners(game);
   drawGame(game);
-  drawFood(food);
 
-  setInterval(() => {
+  const playGame = setInterval(() => {
+    if (game.touchedWall()) endGame(playGame);
     drawGame(game);
-  }, 700);
+  }, 200);
 
   setInterval(() => {
     game.moveGhostSnake();

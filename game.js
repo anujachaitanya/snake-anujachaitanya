@@ -52,4 +52,9 @@ class Game {
       this.moveSnakes();
     }
   }
+
+  touchedWall() {
+    const [colId, rowId] = this.snake.head;
+    return !(colId < this.gridSize[0] && rowId < this.gridSize[1]);
+  }
 }
