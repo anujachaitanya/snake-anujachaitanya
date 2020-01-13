@@ -23,10 +23,6 @@ class Game {
     this.ghostSnake.move();
   }
 
-  update() {
-    this.moveSnakes();
-  }
-
   moveGhostSnake() {
     const x = Math.random() * 100;
     if (x > 50) {
@@ -46,5 +42,14 @@ class Game {
       return cellsA.every((position, index) => position == cellsB[index]);
     };
     return arePositionsEqual(this.food.location, this.snake.head);
+  }
+
+  update() {
+    if (this.isFoodEaten()) {
+      this.generateNewFood();
+      this.snake.eat(this.food);
+    } else {
+      this.moveSnakes();
+    }
   }
 }

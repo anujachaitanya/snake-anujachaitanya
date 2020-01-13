@@ -27,12 +27,14 @@ class Snake {
     this.direction.turnRight();
   }
 
+  eat(food) {
+    this.positions.unshift(food.location);
+  }
+
   move() {
     const [headX, headY] = this.positions[this.positions.length - 1];
     this.previousTail = this.positions.shift();
-
     const [deltaX, deltaY] = this.direction.delta;
-
     this.positions.push([headX + deltaX, headY + deltaY]);
   }
 }

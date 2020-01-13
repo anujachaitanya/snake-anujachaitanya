@@ -57,12 +57,14 @@ const eraseFood = function(food) {
 };
 
 const drawGame = function(game) {
+  game.update();
   const { snake, ghostSnake } = game.getState();
   if (game.isFoodEaten()) {
-    game.generateNewFood();
+    game.update();
     drawFood(game.food);
     eraseFood(game.previousFood);
   }
+
   renderSnake(snake);
   renderSnake(ghostSnake);
 };
@@ -109,9 +111,8 @@ const main = function() {
   drawFood(food);
 
   setInterval(() => {
-    game.update();
     drawGame(game);
-  }, 200);
+  }, 700);
 
   setInterval(() => {
     game.moveGhostSnake();
