@@ -4,6 +4,7 @@ const NUM_OF_ROWS = 60;
 const GRID_ID = 'grid';
 
 const getGrid = () => document.getElementById(GRID_ID);
+
 const getCellId = (colId, rowId) => colId + '_' + rowId;
 
 const getCell = (colId, rowId) => {
@@ -61,9 +62,9 @@ const drawGame = function(game) {
   const { snake, ghostSnake } = game.getState();
   if (game.isFoodEaten()) {
     game.update();
-    drawFood(game.food);
-    eraseFood(game.previousFood);
+    eraseFood(game.getPreviousFood());
   }
+  drawFood(game.getFood());
   renderSnake(snake);
   renderSnake(ghostSnake);
 };

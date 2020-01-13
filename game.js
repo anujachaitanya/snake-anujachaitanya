@@ -7,6 +7,14 @@ class Game {
     this.previousFood = previousFood;
   }
 
+  getFood() {
+    return this.food;
+  }
+
+  getPreviousFood() {
+    return this.previousFood;
+  }
+
   getState() {
     const state = {};
     state.snake = this.snake.getState();
@@ -54,7 +62,11 @@ class Game {
   }
 
   touchedWall() {
-    const [colId, rowId] = this.snake.head;
-    return !(colId < this.gridSize[0] && rowId < this.gridSize[1]);
+    const isTouched = this.snake.positions.some(([colId, rowId]) => {
+      const isRowCrossed = rowId > this.gridSize[1] || rowId < 0;
+      const isColumnCrossed = colId > this.gridSize[0] || colId < 0;
+      return isRowCrossed || isColumnCrossed;
+    });
+    return isTouched;
   }
 }
