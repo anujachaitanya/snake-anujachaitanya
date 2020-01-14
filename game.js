@@ -31,14 +31,15 @@ class Game {
     this.previousFood = this.food;
     const colId = Math.round(Math.random() * this.gridSize[0]);
     const rowId = Math.round(Math.random() * this.gridSize[1]);
-    this.food = new Food([colId, rowId]);
+    const foodType = Math.random() * 100 > 80 ? 'super' : 'normal';
+    this.food = new Food([colId, rowId], foodType);
   }
 
   update() {
     this.moveSnakes();
     if (this.snake.eat(this.food)) {
       this.generateNewFood();
-      this.score.update(1);
+      this.score.update(this.food.potential);
     }
   }
 
@@ -49,7 +50,7 @@ class Game {
     }
   }
 
-  isOver() {
+  isDead() {
     const hasTouchedItself = this.snake.hasTouchedItself();
     const hasSnakeCrossedBoundary = this.snake.hasCrossedBoundary(
       this.gridSize
