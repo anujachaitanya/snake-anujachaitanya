@@ -5,7 +5,6 @@ class Game {
     this.food = initialFood;
     this.gridSize = gridSize;
     this.previousFood = new Food([0, 0]);
-    this.score = new Score(0);
   }
 
   getState() {
@@ -14,12 +13,11 @@ class Game {
     state.ghostSnake = this.ghostSnake.getState();
     state.food = this.food.getState();
     state.previousFood = this.previousFood.getState();
-    state.score = this.score.getScore();
     return state;
   }
 
-  turnSnake(direction) {
-    this.snake['turn' + direction]();
+  turnSnake(turnCommand) {
+    this.snake['turn' + turnCommand]();
   }
 
   moveSnakes() {
@@ -38,7 +36,6 @@ class Game {
     this.moveSnakes();
     if (this.snake.eat(this.food)) {
       this.generateNewFood();
-      this.score.update();
     }
   }
 
@@ -49,7 +46,7 @@ class Game {
     }
   }
 
-  isDead() {
+  isOver() {
     const hasTouchedItself = this.snake.hasTouchedItself();
     const hasSnakeCrossedBoundary = this.snake.hasCrossedBoundary(
       this.gridSize

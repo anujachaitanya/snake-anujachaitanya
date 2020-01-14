@@ -60,18 +60,12 @@ const renderFood = function(food, previousFood) {
   drawFood(food);
 };
 
-const showScore = function(score) {
-  const scoreCard = document.getElementById('score');
-  scoreCard.innerHTML = score;
-};
-
 const drawGame = function(game) {
   game.update();
-  const { snake, ghostSnake, food, previousFood, score } = game.getState();
+  const { snake, ghostSnake, food, previousFood } = game.getState();
   renderFood(food, previousFood);
   renderSnake(snake);
   renderSnake(ghostSnake);
-  showScore(score);
 };
 
 const handleKeyPress = (event, game) => {
@@ -117,7 +111,7 @@ const main = function() {
 
   const gamePlayer = setInterval(() => {
     drawGame(game);
-    if (game.isDead()) {
+    if (game.isOver()) {
       clearInterval(gamePlayer);
     }
   }, 120);
