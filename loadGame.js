@@ -60,9 +60,15 @@ const renderFood = function(food, previousFood) {
   drawFood(food);
 };
 
+const showScore = function(score) {
+  const scoreCard = document.getElementById('score');
+  scoreCard.innerHTML = score;
+};
+
 const drawGame = function(game) {
   game.update();
-  const { snake, ghostSnake, food, previousFood } = game.getState();
+  const { snake, ghostSnake, food, previousFood, score } = game.getState();
+  showScore(score);
   renderFood(food, previousFood);
   renderSnake(snake);
   renderSnake(ghostSnake);
