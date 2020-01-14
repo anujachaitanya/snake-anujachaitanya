@@ -61,6 +61,7 @@ const renderFood = function(food, previousFood) {
 };
 
 const drawGame = function(game) {
+  game.update();
   const { snake, ghostSnake, food, previousFood } = game.getState();
   renderFood(food, previousFood);
   renderSnake(snake);
@@ -69,8 +70,8 @@ const drawGame = function(game) {
 
 const handleKeyPress = (event, game) => {
   const keyMap = { 37: 'Left', 39: 'Right' };
-  const turnCmd = keyMap[event.keyCode];
-  turnCmd && game.turnSnake(turnCmd);
+  const turnCommand = keyMap[event.keyCode];
+  if (turnCommand) game.turnSnake(turnCommand);
 };
 
 const attachEventListeners = game => {
@@ -108,11 +109,10 @@ const main = function() {
   const game = new Game(snake, ghostSnake, food, [99, 59]);
   initGame(game);
 
-  const gameUpdate = setInterval(() => {
-    game.update();
+  const gamePlayer = setInterval(() => {
     drawGame(game);
     if (game.isOver()) {
-      clearInterval(gameUpdate);
+      clearInterval(gamePlayer);
     }
   }, 120);
 

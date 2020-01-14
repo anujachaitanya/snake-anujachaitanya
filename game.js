@@ -16,8 +16,8 @@ class Game {
     return state;
   }
 
-  turnSnake(turnCmd) {
-    this.snake['turn' + turnCmd]();
+  turnSnake(turnCommand) {
+    this.snake['turn' + turnCommand]();
   }
 
   moveSnakes() {
@@ -27,9 +27,9 @@ class Game {
 
   generateNewFood() {
     this.previousFood = this.food;
-    const newFoodColId = Math.round(Math.random() * this.gridSize[0]);
-    const newFoodRowId = Math.round(Math.random() * this.gridSize[1]);
-    this.food = new Food([newFoodColId, newFoodRowId]);
+    const colId = Math.round(Math.random() * this.gridSize[0]);
+    const rowId = Math.round(Math.random() * this.gridSize[1]);
+    this.food = new Food([colId, rowId]);
   }
 
   update() {
@@ -41,7 +41,7 @@ class Game {
 
   moveGhostSnake() {
     const x = Math.random() * 100;
-    if (x > 10) {
+    if (x > 30) {
       this.ghostSnake.turnLeft();
     }
   }

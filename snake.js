@@ -1,5 +1,5 @@
 const areEqualCells = (cellA, cellB) =>
-  cellA.every((elem, indx) => elem === cellB[indx]);
+  cellA.every((element, index) => element === cellB[index]);
 
 class Snake {
   constructor(positions, direction, type) {
@@ -46,14 +46,14 @@ class Snake {
   eat(food) {
     const isHeadOnFood = areEqualCells(this.head, food.getState().location);
     if (isHeadOnFood) {
-      this.grow(food.growthSize);
+      this.grow();
     }
     return isHeadOnFood;
   }
 
   hasTouchedItself() {
-    const restsBody = this.positions.slice(0, this.positions.length - 1);
-    return restsBody.some(cell => areEqualCells(cell, this.head));
+    const body = this.positions.slice(0, this.positions.length - 1);
+    return body.some(cell => areEqualCells(cell, this.head));
   }
 
   hasCrossedBoundary(boundary) {
@@ -62,7 +62,7 @@ class Snake {
     return crossedHorizontally || crossedVertically;
   }
 
-  isHeadOn(coords) {
-    return areEqualCells(this.head, coords);
+  isHeadOn(position) {
+    return areEqualCells(this.head, position);
   }
 }
