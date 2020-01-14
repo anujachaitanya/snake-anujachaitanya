@@ -3,7 +3,9 @@ class Food {
     this.position = position.slice();
   }
 
-  get location() {
-    return this.position.slice();
+  getState() {
+    const state = {};
+    state.location = this.position.slice();
+    return state;
   }
 }

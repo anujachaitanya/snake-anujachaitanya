@@ -1,23 +1,26 @@
---DONE-- * Paint or place a static snake on the screen
+Done: * Paint or place a static snake on the screen
             * Assume the snake is composed of blocks 
 
---DONE-- * Create a simple page that will host the game
+Done: * Create a simple page that will host the game
 
---DONE-- * Create a key listener on the grid so that the snake can move
---DONE-- * Move the snake one cell at a time from left to right
---DONE-- * Extract a Snake class that is responsible for snake's behaviour
---DONE-- * Create a ghost snake that randomly roams around
+Done: * Create a key listener on the grid so that the snake can move
 
---DONE-- * Extract a Direction class that is responsible for the direction 
+Done: * Move the snake one cell at a time from left to right
+
+Done: * Extract a Snake class that is responsible for snake's behavior
+
+Done: * Create a ghost snake that randomly roams around
+
+Done: * Extract a Direction class that is responsible for the direction 
            and the deltas 
 
---DONE-- * Make snake and ghostSnake local. they're currently global and hackable.
+Done: * Make snake and ghostSnake local. they're currently global and hackable.
 
---DONE-- * Change color of ghost snake
+Done: * Change color of ghost snake
 
 
-* Generate food periodically
-* Allow snake to eat food when food becomes available
-* Upon eating the food, snake should grow tall
+Done: * Generate food periodically
+Done: * Allow snake to eat food when food becomes available
+Done: s* Upon eating the food, snake should grow tall
 * If snake touches itself or the walls, the game should be over
 * Add a scoring mechanism
