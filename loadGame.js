@@ -108,11 +108,16 @@ const initGame = function(game) {
   drawGame(game);
 };
 
-const main = function() {
+const createGame = function() {
   const snake = initSnake();
   const ghostSnake = initGhostSnake();
   const food = new Food([47, 30], 'normal');
   const game = new Game(snake, ghostSnake, food, [99, 59]);
+  return game;
+};
+
+const main = function() {
+  const game = createGame();
   initGame(game);
 
   const gamePlayer = setInterval(() => {
