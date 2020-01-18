@@ -49,14 +49,15 @@ const drawFood = function(food) {
   foodCell.classList.add(food.type);
 };
 
-const eraseFood = function(food) {
-  const [colId, rowId] = food.location;
-  const cellToClear = getCell(colId, rowId);
-  cellToClear.classList.remove(food.type);
+const eraseFood = function() {
+  const previousFood =
+    document.querySelector('.normal') || document.querySelector('.super');
+  console.log(previousFood && previousFood.classList);
+  previousFood && previousFood.classList.remove('normal', 'super');
 };
 
-const renderFood = function(food, previousFood) {
-  eraseFood(previousFood);
+const renderFood = function(food) {
+  eraseFood();
   drawFood(food);
 };
 
@@ -67,9 +68,9 @@ const showScore = function(score) {
 
 const drawGame = function(game) {
   game.update();
-  const { snake, ghostSnake, food, previousFood, score } = game.getState();
+  const { snake, ghostSnake, food, score } = game.getState();
   showScore(score);
-  renderFood(food, previousFood);
+  renderFood(food);
   renderSnake(snake);
   renderSnake(ghostSnake);
 };

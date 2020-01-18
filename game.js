@@ -4,7 +4,6 @@ class Game {
     this.ghostSnake = ghostSnake;
     this.food = initialFood;
     this.gridSize = gridSize;
-    this.previousFood = new Food([0, 0]);
     this.score = new Score(0);
   }
 
@@ -13,7 +12,6 @@ class Game {
     state.snake = this.snake.getState();
     state.ghostSnake = this.ghostSnake.getState();
     state.food = this.food.getState();
-    state.previousFood = this.previousFood.getState();
     state.score = this.score.getScore();
     return state;
   }
@@ -28,10 +26,9 @@ class Game {
   }
 
   generateNewFood() {
-    this.previousFood = this.food;
     const colId = Math.round(Math.random() * this.gridSize[0]);
     const rowId = Math.round(Math.random() * this.gridSize[1]);
-    const foodType = Math.random() * 100 > 80 ? 'super' : 'normal';
+    const foodType = Math.random() * 100 > 70 ? 'super' : 'normal';
     this.food = new Food([colId, rowId], foodType);
   }
 
